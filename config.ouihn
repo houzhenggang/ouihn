@@ -1,0 +1,121 @@
+#sample config
+#各項目は、未設定の場合デフォルト値が使用される
+#PRT,Monitoring Device,Ruleに関しては、設定が必須になる
+
+
+#登録されていないデバイスをどうするか
+#0ならREJECTする.1ならNO_REG_DEV_UPで指定したUPを使用する.2なら乱数を使用する
+NO_REG_DEV=1
+NO_REG_DEV_CP=2
+
+#最大接続数(CDBの要素数)
+MAX_CLIENT=20
+
+#監視するデバイスの数
+NUM_MON_DEVS=12
+
+#結果の出力を行う間隔
+REC1_INVAL=1
+REC2_INVAL=600
+
+#各インターバルは終了待機時間以下にすること
+#輻輳検知インターバル
+COG_DT_INVAL=2
+
+#輻輳監視インターバル
+COG_MN_INVAL=2
+
+#輻輳監視を行う時間
+MN_SEC=6
+
+#輻輳回避インターバル
+COG_AV_INVAL=8
+
+#チャネル使用率とノイズ値を取得するインターバル
+SURVEY_INVAL=2
+
+#通信状態チェックインターバル
+COND_CHK_INVAL=5
+
+#通信状態カウンタの最大値
+COND_CNT_MAX=3
+
+#Throughputを取得するインターバル
+THR_GET_INVAL=1
+
+#輻輳閾値
+#輻輳検知アルゴリズムより算出されたスループットがこの値以下なら輻輳とする
+COG_THRESH=1000000
+
+#チャネル使用率がこの値以下なら輻輳にしない
+CH_UTIL_THRESH=80
+
+#最小接続台数
+MIN_NUM_COM_DEV=3
+
+#cut client tableのエントリ数
+NUM_CCT_ENT=20
+
+#Basic Refresh Time
+BRT=10
+
+#デバッグモード
+#1ならデバッグメッセージを出力する
+DEBUG_MODE=1
+
+#CPごとの接続台数などを表示するインターバル
+CCDISPLAY_INVAL=30
+
+#RSSIレベルの閾値
+RSSI_LEVEL_MID=-85
+RSSI_LEVEL_HIGH=-65
+
+#CPごとのリフレッシュ時間を設定する
+#左からCP=1,2,3,4,5のPRT
+[PRT]
+60,40,30,10,0
+
+#監視する端末のノード名、MACアドレス、優先度
+[Monitoring Device]
+NodeA % cc:e1:d5:17:c7:ba % 2
+NodeB % cc:e1:d5:17:a7:bd % 1
+NodeD % cc:e1:d5:17:9a:a2 % 3
+OzeraDesk % cc:e1:d5:17:48:cc % 5
+OzeraiPhone % e4:25:e7:bc:eb:47 % 5
+InabaiPhone % 40:b3:95:2c:e4:bb % 1
+NasuiPhone % 04:4b:ed:56:20:91 % 1
+InabaMac % 80:e6:50:19:9d:68 % 4 
+#NodeN % 40:25:c2:f4:90:7c % 3
+#Node3 % cc:e1:d5:4c:70:60 % 2
+Node4 % cc:e1:d5:4c:73:d2 % 5
+Node5 % cc:e1:d5:4c:75:46 % 4
+Node1 % cc:e1:d5:4c:73:5c % 5
+#Dell % dc:fb:02:58:e3:3b % 5
+OzeraPC % c4:85:08:4c:c8:0e % 5
+
+#接続制御と通信状態制御に使用するルール
+#接続制御、通信状態制御の順で記述すること
+#Detect-Monitoring/Avoidの順で記述すること
+#フェーズ間の記述は１行空行を入れること
+[Rules]
+#0=Reject 1=Accept,Swap
+#これ以降のむやみなコメントは禁止
+{Connection Ctrl}
+1,1,1,1,1
+1,1,1,1,1
+0,0,1,1,1
+
+1,1,1,1,1
+0,0,1,1,1
+0,0,0,0,0
+
+#0=Cut 1=Count UP 2=Stay
+{Condition Ctrl}
+2,2,2,2,2
+2,2,2,2,2
+1,1,1,1,1
+
+2,2,2,2,2
+1,1,1,1,2
+0,0,0,1,1
+
