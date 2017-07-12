@@ -12,7 +12,7 @@ NO_REG_DEV_CP=2
 MAX_CLIENT=20
 
 #監視するデバイスの数
-NUM_MON_DEVS=12
+NUM_MON_DEVS=6
 
 #結果の出力を行う間隔
 REC1_INVAL=1
@@ -80,18 +80,12 @@ RSSI_LEVEL_HIGH=-65
 NodeA % cc:e1:d5:17:c7:ba % 2
 NodeB % cc:e1:d5:17:a7:bd % 1
 NodeD % cc:e1:d5:17:9a:a2 % 3
-OzeraDesk % cc:e1:d5:17:48:cc % 5
-OzeraiPhone % e4:25:e7:bc:eb:47 % 5
-InabaiPhone % 40:b3:95:2c:e4:bb % 1
-NasuiPhone % 04:4b:ed:56:20:91 % 1
-InabaMac % 80:e6:50:19:9d:68 % 4 
 #NodeN % 40:25:c2:f4:90:7c % 3
 #Node3 % cc:e1:d5:4c:70:60 % 2
 Node4 % cc:e1:d5:4c:73:d2 % 5
 Node5 % cc:e1:d5:4c:75:46 % 4
 Node1 % cc:e1:d5:4c:73:5c % 5
-#Dell % dc:fb:02:58:e3:3b % 5
-OzeraPC % c4:85:08:4c:c8:0e % 5
+
 
 #接続制御と通信状態制御に使用するルール
 #接続制御、通信状態制御の順で記述すること
